@@ -16,9 +16,12 @@
 # For example, `--video-input /dev/video0` will capture from a V4L2 webcam. See here:
 #  https://github.com/dusty-nv/jetson-inference/blob/master/docs/aux-streaming.md
 #
+import os
 from nano_llm import NanoLLM, ChatHistory
 from nano_llm.utils import ArgParser, load_prompts
 from nano_llm.plugins import VideoSource, VideoOutput
+from nano_llm.web import WebServer
+
 
 from termcolor import cprint
 
@@ -68,6 +71,20 @@ while True:
 
     out = img
     video_output.process(out)
+    webrtc_args = {}
+    video_output_args = video_output.stream.GetOptions()['resource']
+    webrtc_args.update(dict(webrtc_output_stream=video_output_args['path'].strip('/'), 
+                                    webrtc_output_port=video_output_args['port']))
+    server = WebServer(
+            msg_callback=self.on_websocket, 
+            index='video_query.html', 
+            title="VILA Test", 
+            model=os.path.basename(model),
+            # mounts=mounts,
+            # nanodb=nanodb,
+            **webrtc_args,
+            # **kwargs
+        )
 
     chat_history.append(role='user', image=img)
     
