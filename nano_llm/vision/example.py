@@ -18,7 +18,7 @@
 #
 from nano_llm import NanoLLM, ChatHistory
 from nano_llm.utils import ArgParser, load_prompts
-from nano_llm.plugins import VideoSource
+from nano_llm.plugins import VideoSource, VideoOutput
 
 from termcolor import cprint
 
@@ -34,6 +34,10 @@ if not args.model:
 
 if not args.video_input:
     args.video_input = "/data/images/*.jpg"
+
+video_output = None
+if args.video_output:
+    video_output = VideoOutput("webrtc://@:8554/output")
     
 print(args)
 
@@ -61,6 +65,9 @@ while True:
     
     if img is None:
         continue
+
+    out = img.copy()
+    video_output.process(out)
 
     chat_history.append(role='user', image=img)
     
