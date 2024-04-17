@@ -23,7 +23,7 @@ from nano_llm.plugins import VideoSource, VideoOutput
 from termcolor import cprint
 
 # parse args and set some defaults
-args = ArgParser(extras=ArgParser.Defaults + ['prompt', 'video_input']).parse_args()
+args = ArgParser(extras=ArgParser.Defaults + ['prompt', 'video_input', 'video_output']).parse_args()
 prompts = load_prompts(args.prompt)
 
 if not prompts:
