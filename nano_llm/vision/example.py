@@ -79,7 +79,7 @@ while True:
             # msg_callback=self.on_websocket, 
             index='video_query.html', 
             title="VILA Test", 
-            model=os.path.basename(model),
+            # model=os.path.basename(model),
             # mounts=mounts,
             # nanodb=nanodb,
             **webrtc_args,
