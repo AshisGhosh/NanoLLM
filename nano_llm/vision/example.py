@@ -76,6 +76,7 @@ server = WebServer(
         **webrtc_args,
         # **kwargs
     )
+server.start()
 
 # apply the prompts to each frame
 while True:
