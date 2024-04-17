@@ -38,10 +38,8 @@ if not args.model:
 if not args.video_input:
     args.video_input = "/data/images/*.jpg"
 
-video_output = None
-if args.video_output:
-    # video_output = VideoOutput("webrtc://@:8554/output")
-    video_output = VideoOutput("display://0	")
+
+video_output = VideoOutput("display://0	")
     
 print(args)
 
