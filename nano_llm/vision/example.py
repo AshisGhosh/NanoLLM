@@ -40,7 +40,8 @@ if not args.video_input:
 
 video_output = None
 if args.video_output:
-    video_output = VideoOutput("webrtc://@:8554/output")
+    # video_output = VideoOutput("webrtc://@:8554/output")
+    video_output = VideoOutput("rtsp://@:1234/my_output")
     
 print(args)
 
@@ -62,21 +63,21 @@ chat_history = ChatHistory(model, args.chat_template, args.system_prompt)
 # open the video stream
 video_source = VideoSource(**vars(args))
 
-webrtc_args = {}
-video_output_args = video_output.stream.GetOptions()['resource']
-webrtc_args.update(dict(webrtc_output_stream=video_output_args['path'].strip('/'), 
-                                webrtc_output_port=video_output_args['port']))
-server = WebServer(
-        # msg_callback=self.on_websocket, 
-        index='video_query.html', 
-        title="VILA Test", 
-        # model=os.path.basename(model),
-        # mounts=mounts,
-        # nanodb=nanodb,
-        **webrtc_args,
-        # **kwargs
-    )
-server.start()
+# webrtc_args = {}
+# video_output_args = video_output.stream.GetOptions()['resource']
+# webrtc_args.update(dict(webrtc_output_stream=video_output_args['path'].strip('/'), 
+#                                 webrtc_output_port=video_output_args['port']))
+# server = WebServer(
+#         # msg_callback=self.on_websocket, 
+#         index='video_query.html', 
+#         title="VILA Test", 
+#         # model=os.path.basename(model),
+#         # mounts=mounts,
+#         # nanodb=nanodb,
+#         **webrtc_args,
+#         # **kwargs
+#     )
+# server.start()
 
 # apply the prompts to each frame
 while True:
