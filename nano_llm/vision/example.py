@@ -66,7 +66,7 @@ while True:
     if img is None:
         continue
 
-    out = img.copy()
+    out = img
     video_output.process(out)
 
     chat_history.append(role='user', image=img)
