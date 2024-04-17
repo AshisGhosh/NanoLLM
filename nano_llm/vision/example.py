@@ -76,7 +76,7 @@ while True:
     webrtc_args.update(dict(webrtc_output_stream=video_output_args['path'].strip('/'), 
                                     webrtc_output_port=video_output_args['port']))
     server = WebServer(
-            msg_callback=self.on_websocket, 
+            # msg_callback=self.on_websocket, 
             index='video_query.html', 
             title="VILA Test", 
             model=os.path.basename(model),
