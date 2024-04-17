@@ -82,12 +82,14 @@ while True:
     # img = video_source.capture()
     if not frame_queue.empty():
         img = frame_queue.get()
-    
-    if img is None:
+    else:
         continue
+    
+    # if img is None:
+    #     continue
 
-    out = video_source.capture(return_tensors='np')
-    cv2.imshow('Video', out)
+    # out = video_source.capture(return_tensors='np')
+    # cv2.imshow('Video', out)
 
     chat_history.append(role='user', image=img)
     
