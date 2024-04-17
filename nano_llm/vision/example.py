@@ -41,7 +41,7 @@ if not args.video_input:
 video_output = None
 if args.video_output:
     # video_output = VideoOutput("webrtc://@:8554/output")
-    video_output = VideoOutput("rtsp://@:1234/my_output")
+    video_output = VideoOutput("display://0	")
     
 print(args)
 
